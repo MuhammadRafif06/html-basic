@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Login User</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            outline: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            height: 100vh;
+
+            /* background-image: url(Images/maxresdefault.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center; */
+        }
+
+        .container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            padding: 20px 25px;
+            background-color: rgba(0, 0, 0, .5);
+            border-radius: 30px;
+        }
+
+        .container form input {
+            width: calc(100% - 20px);
+            padding: 15px 15px;
+            margin-bottom: 15px;
+            border-radius: 50px;
+            border: none;
+            background-color: lightgray;
+            color: gray;
+            font-size: large;
+        }
+
+        .container form button {
+            width: 100%;
+            padding: 15px 15px;
+            border: none;
+            border-radius: 50px;
+            background-color: white;
+            color: black;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <audio src="Music/y2mate.com - Carefree  Kevin MacLeod No Copyright Music.mp3" autoplay loop>
+    </audio>
+    <video autoplay="true" loop="true" muted="true" id="video">
+        <source src="Images/Jakarta-timelapse.mp4" type="video/mp4">
+    </video>
+   <center>
+    <div class="container">
+        <h1>User Login</h1>
+        <form>
+            <input type="test" placeholder="username"/>
+            <br>
+            <input type="password" placeholder="password"/>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+   </center>
+</body>
+</html>
