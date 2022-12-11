@@ -56,24 +56,24 @@
                         <div class="tab-pane fade show active" id="nav-login" role="tabpanel"
                             aria-labelledby="nav-login-tab">
                             <form class="p-5">
-                                <h2 class="h2 mobileh2">Login Siswa</h2>
+                                <h2 class="h2 mobileh2">Login Kantin</h2>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="usernameregis" aria-describedby="emailHelp"
-                                        placeholder="silahkan isi username..." required>
-                                        <input type="text" id="userlogin">
+                                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp"
+                                        placeholder="silahkan isi username..." required />
+                                    <input type="hidden" id="userlogin">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="passwordregis"
+                                    <input type="password" class="form-control" id="password"
                                         placeholder="silahkan isi password..." required>
-                                        <input type="text" id="userpassword">
-                                        
+                                    <input type="hidden" id="userpassword">
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="checkbox" onclick="klikPassword();" class="form-check-input"
                                         id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Show Password</label>
+                                    <label class="form-check-label" for="exampleCheck1" id="showpass">Show
+                                        Password</label>
                                 </div>
                                 <hr />
                                 <div class="text-center">
@@ -82,7 +82,8 @@
                                     <i class='bx bxl-instagram-alt fs-5'></i>
                                     <i class='bx bxl-gmail fs-5'></i>
                                 </div>
-                                <button type="button" id="submitlogin" class="btn btn-primary" onclick="submitLogin();">Submit</button>
+                                <button type="button" id="submitlogin" class="btn btn-primary"
+                                    onclick="submitLogin()">Submit</button>
                             </form>
                         </div>
                         <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab">
@@ -91,13 +92,13 @@
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Username</label>
                                     <input type="text" class="form-control" placeholder="silahkan isi username..."
-                                        id="username" aria-describedby="emailHelp" required>
+                                        id="usernameregister" aria-describedby="emailHelp" required>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
                                         <input type="password" class="form-control"
-                                            placeholder="silahkan isi password..." id="password" required>
+                                            placeholder="silahkan isi password..." id="passwordregister" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
@@ -147,7 +148,7 @@
                     })
 
                     function klikPassword() {
-                        var klik = document.getElementById('exampleInputPassword1');
+                        var klik = document.getElementById('showpass');
                         if (klik.type === "password") {
                             klik.type = 'text';
                         } else {
@@ -163,26 +164,6 @@
                             klik.type = "password";
                         }
                     }
-
-                    // $('#submitlogin').click(function () {
-                    //     Swal.fire({
-                    //         position: 'center',
-                    //         icon: 'error',
-                    //         title: 'Enter the correct username',
-                    //         showConfirmButton: false,
-                    //         timer: 1500
-                    //     })
-                    // })
-
-                    $('#submitlogin').click(function () {
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: 'Your work has been saved',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    })
 
                     $('#submitregistration').click(function () {
                         let timerInterval
@@ -204,38 +185,44 @@
                         }).then((result) => {
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 $('#nav-tab button[data-bs-target="#nav-login"]').tab('show');
-                                $('#usernameregis').val($('#username').val());
-                                $('#passwordregis').val($('#password').val());
+                                $('#userlogin').val($('#usernameregister').val());
+                                $('#userpassword').val($('#passwordregister').val());
                             }
                         })
                     })
 
                     function submitLogin() {
-                        var username = $('#usernameregis').val();
-                        var password = $('#passwordregis').val();
-                        var usernameregis = $('#userlogin').val();
-                        var passwordregis = $('#userpassword').val();
-                        if (userlogin != username || passwordlogin != password) {
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'Enter the correct username',
-                                showConfirmButton: false,
-                                timer: 1500
+                        var username = $('#username').val();
+                        var password = $('#password').val();
+                        var userlogin = $('#userlogin').val();
+                        var passwordLogin = $('#userpassword').val();
+                        if (userlogin != username || passwordLogin != password) {
+                            var musiksalah = document.createElement('audio');
+                            musiksalah.setAttribute('src', '/Music/kaget.mp3');
+                            musiksalah.addEventListener('ended', function () {
+                                document.removeChild(this);
                             })
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Salah bro salah',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                text: 'login gagal karena username kalah atau password anda salah !'
+                            })
+                            musiksalah.play();
                         } else {
                             Swal.fire({
-                                position: 'center',
                                 icon: 'success',
-                                title: 'Berhasil Login',
-                                showConfirmButton: false,
-                                timer: 1500
-                            }).then((result) =>{
-                                window.location = 'practice-form.html';
+                                title: 'Berhasil',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                text: 'Berhasil Login'
+                            }).then((result) => {
+                                window.location = 'pboostrap.html';
                             })
                         }
-
                     }
-         </script>
-    </body>
+                </script>
+</body>
+
 </html>

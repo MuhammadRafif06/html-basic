@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/style/dashboard.css" />
+
+</head>
+
+<body>
+    <div id="preloader">
+        <div id="status"></div>
+    </div>
+    <!--navbar-->
+    <nav class="navbar shadow sticky-top navbar-expand-sm navbar-light bg-custom" id="navdarkmode">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <button class="btn btn-light btn-sm" id="button-toggle">
+                    <i class='bx bx-chevrons-right bx-sm text-custom' id="icon"></i>
+                </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" style="height: 30px; width: 50px;" type="checkbox"
+                                id="switch" checked>
+                            <label class="form-check-label ml-2 mt-2 text-light" for="flexSwitchCheckDefault"><i
+                                    class='bx bxs-moon bx-sm text-light' id="labelmode"></i></label>
+                        </div>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <div class="mr-4 pt-2 text-light">
+
+                    </div>
+                    <button class="btn btn-light text-custom" id="logout" type="button">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!--sidebar-->
+    <div class="sidebar shadow p-4 bg-light" id="sidebar">
+        <img src="/Images/Screenshot 2022-10-04 110845.png" alt="logo" width="120" height="100" class="d-block mx-auto">
+        <!-- untuk list sidebar -->
+        <ul>
+            <li> <a href="dashboard.html">
+                    <i class="bx bxs-dashboard bx-sm"></i>
+                    dashboard
+                </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="appertizer.html">
+                    <i class="bx bxs-dashboard bx-sm"></i>
+                    appertizer
+                </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="maincourse.html">
+                    <i class="bx bxs-dashboard bx-sm"></i>
+                    main course
+                </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="dessert.html">
+                    <i class="bx bxs-dashboard bx-sm"></i>
+                    dessert
+                </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="cabang.html">
+                    <i class="bx bxs-dashboard bx-sm"></i>
+                    cabang
+                </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="owner.html">
+                    <i class="bx bxs-dashboard bx-sm"></i>
+                    owner
+                </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="reservasi.html">
+                    <i class="bx bxs-dashboard bx-sm"></i>
+                    reservasi
+                </a> </li>
+        </ul>
+        <ul>
+            <li> <a href="suggestion.html">
+                    <i class="bx bxs-dashboard bx-sm"></i>
+                    suggestion
+                </a> </li>
+        </ul>
+    </div>
+    <!--body content-->
+    <div id="main-content">
+        <div class="container text-center mt-3">
+            <h2 class="h2 text-center mt-3" id="text-darkmode" style="font-family: Brush Script MT">Reservasi</h2>
+            <form method="post" netlify>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6 mb-3">
+                        <label for="nama">Name</label>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" name="name" class="form-control" placeholder="Silahkan isi namamu..">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" name="email" class="form-control" placeholder="Silahkan isi emailmu..">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="tanggal">Tanggal & Waktu</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="datetime-local" class="form-control" name="tanggal">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6 mt-4">
+                            <label class="form-label">Pesanan</label>
+                        </div>
+                        <div class="col-md-6 mt-3">
+                            <div class="row" id="field_dinamis">
+                                <div class="col-md-4">
+                                    <select id="select_api" class="form-select name_list" name="pesanan[]"
+                                        style="width: 120px; height: 50px;">
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" class="form-control" placeholder="stock">
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-success" type="button" id="add">
+                                        <i class='bx bx-plus'></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary mt-3 float-start"
+                                    name="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <footer class="footer fixed-bottom bg-primary">
+            <div class="container text-center">
+                <span class="text-primary">Copyright &copy; by Rafif</span>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+        <script src="  https://printjs-4de6.kxcdn.com/print.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+        <script>
+            $('#status').fadeOut();
+            $('#preloader').delay(350).fadeOut('slow');
+            $('body').delay(350).css({
+                'overflow': 'visible'
+            });
+
+            //fungsi toggle sidebar
+            //document mencarikan selector dengan atribut id yang bernama button-toggle
+            document.getElementById('button-toggle').addEventListener('click', () => {
+                //sidebar akan mem pop-up
+                document.getElementById('sidebar').classList.toggle('active-sidebar')
+                //main content akan menciut
+                document.getElementById('main-content').classList.toggle('active-main-content')
+                document.getElementById('footer').classList.toggle('active-footer')
+
+            })
+
+            //fungsi
+            $('#button-toggle').click(function () {
+                $('#icon').toggleClass('bx-chevrons-right bx-chevrons-left');
+            })
+
+            // menampilkan data api nya
+            // var html sebagai wadah penampungan datanya
+            // var html = '';
+            // // var ajac untuk memangil endpoint / apinya
+            // var ajax = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+
+            // //memanggil api dengan metode fetch
+            // fetch(ajax).then(res => res.json()).then(data => {
+            //     for (i = 1; i < ajax.length; i++) {
+            //     html += '<option>'+ data.categories[i].strCategory +'</option>';
+            //     $('#select_api').html(html); 
+            //     }
+            // });
+
+            //with select 2 js
+            $('.name_api').select2({
+                //property untuk select2js
+                placeholder: 'pilih makanan',
+                ajax: {
+                    //format data adalah json
+                    dataType: 'json',
+                    //url untuk menampung data api
+                    url: 'https://www.themealdb.com/api/json/v1/1/categories.php',
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data.categories, function (item) {
+                                return {
+                                    text: item.strCategory,
+                                    id: item.idCategory
+                                }
+                            })
+                        }
+                    }
+                }
+            })
+
+            var i = 1;;
+            $('#add').click(function () {
+                i++;
+                $('#field_dinamis').append(
+                    '<div class="col-md-4 mt-3" row' + i + '>' +
+                    '<select id="select" class="form-select name_list" name="pesanan[]" style="width: 120px; height: 50px;"></select>' +
+                    '</div>' +
+                    '<div class="col-md-4 mt-3 row' + i + '">' +
+                    '<input type="number" class="form-control" placeholder="stock">' +
+                    '</div>' +
+                    '<div class="col-md-4 mt-3 row' + i + '">' +
+                    '<button class="btn btn-danger btn-remove" type="button" id="'+i+'">' +
+                    '<i class="bx bx-minus"></i>' +
+                    '</button>' +
+                    '</div>'
+                );
+                $('.name_list').select2({
+                    //property untuk select2js
+                    placeholder: 'pilih makanan',
+                    ajax: {
+                        //format data adalah json
+                        dataType: 'json',
+                        //url untuk menampung data api
+                        url: 'https://www.themealdb.com/api/json/v1/1/categories.php',
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data.categories, function (item) {
+                                    return {
+                                        text: item.strCategory,
+                                        id: item.idCategory
+                                    }
+                                })
+                            }
+                        }
+                    }
+                })
+
+                //fungsi untuk menghapus multiple
+                $(document).on('click', '.btn-remove', function(){
+                    var button_id = $(this).attr('id');
+                    $('.row'+button_id+'').remove();
+                })
+            });
+        </script>
+</body>
+
+</html>
